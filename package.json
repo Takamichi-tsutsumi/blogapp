@@ -22,6 +22,8 @@
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
     "react": "^0.14.3",
+    "react-addons": "^0.9.1-deprecated",
+    "react-addons-create-fragment": "^0.14.7",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0-rc5",

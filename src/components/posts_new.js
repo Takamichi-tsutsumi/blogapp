@@ -13,10 +13,7 @@ class PostsNew extends Component {
 
     onSubmit(props) {
         this.props.createPost(props)
-            .then(() => {
-                // blog pos has been created, navigate the user to the index
-                this.context.router.push('/');
-            });
+            .then(() => { this.context.router.push('/') });
     }
 
     render() {

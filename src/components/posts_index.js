@@ -4,7 +4,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchPosts } from '../actions/index';
+import { fetchPosts, selectCategory } from '../actions/index';
+import _ from 'lodash';
 
 class PostsIndex extends Component {
     componentWillMount() {
@@ -12,7 +13,16 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
-        return this.props.posts.map((post) => {
+        var posts = this.props.posts;
+        console.log(this.props.category);
+        if ('post') {
+            posts = _.filter(posts, (post) => {
+                if (post.categories == 'post') {
+                    return post;
+                }
+            })
+        }
+        return posts.map((post) => {
             return (
                 <li className="list-group-item" key={post.id}>
                     <Link to={"posts/" + post.id}>
@@ -24,18 +34,38 @@ class PostsIndex extends Component {
         });
     }
 
+    renderCategories() {
+        return this.props.posts.map((post) => {
+            return (
+                <li className="list-group-item" key={post.categories}>
+                        {post.categories}
+                </li>
+            )
+        })
+    }
+
     render() {
         return (
-            <div>
+            <div className="container">
                 <div className="text-xs-right">
                     <Link to="/posts/new" className="btn btn-secondary">
                         Add a Post
                     </Link>
                 </div>
-                <h3>Posts</h3>
-                <ul className="list-group">
-                    { this.renderPosts() }
-                </ul>
+                <div className="row">
+                    <div className="col-md-8">
+                        <h3>Posts</h3>
+                        <ul className="list-group">
+                            { this.renderPosts() }
+                        </ul>
+                    </div>
+                    <div className="col-md-4">
+                        <h4>Categories</h4>
+                        <ul className="list-group">
+                            { this.renderCategories() }
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -43,7 +73,7 @@ class PostsIndex extends Component {
 
 function mapStateToProps(state) {
     "use strict";
-    return { posts: state.posts.all };
+    return { posts: state.posts.all, category: state.posts.category };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts, selectCategory })(PostsIndex);

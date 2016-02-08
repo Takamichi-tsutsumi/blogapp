@@ -4,6 +4,7 @@ export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_A_POST = 'FETCH_A_POSTS';
 export const CREATE_POST = 'CREATE_POSTS';
 export const DELETE_POST = 'DELETE_POST';
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=takaaasaaaas';
@@ -46,4 +47,12 @@ export function deletePost(id) {
         type: DELETE_POST,
         payload: request
     };
+}
+
+export function selectCategory(category) {
+    "use strict";
+    return {
+        type: SELECT_CATEGORY,
+        payload: category
+    }
 }

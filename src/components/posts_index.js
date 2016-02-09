@@ -21,6 +21,10 @@ class PostsIndex extends Component {
             })
         }
 
+        if (typeof posts == 'undefined' || posts.length == 0) {
+            return <div>Loading...</div>;
+        }
+
         return posts.map((post) => {
             return (
                 <li className="list-group-item" key={post.id}>
@@ -40,6 +44,10 @@ class PostsIndex extends Component {
     renderCategories() {
         var categories = _.map(this.props.posts, (post) => { return post.categories });
         categories = _.uniq(categories, true);
+
+        if (typeof categories == 'undefined' || categories.length == 0) {
+            return <div>Loading...</div>;
+        }
 
         return categories.map((category) => {
             return (

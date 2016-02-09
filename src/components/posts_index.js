@@ -15,12 +15,9 @@ class PostsIndex extends Component {
     renderPosts() {
         var posts = this.props.posts;
 
-
         if (this.props.category) {
             posts = _.filter(posts, (post) => {
-                if (post.categories == this.props.category) {
-                    return post;
-                }
+                return post.categories == this.props.category;
             })
         }
 

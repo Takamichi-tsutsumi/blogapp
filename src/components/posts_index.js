@@ -43,7 +43,7 @@ class PostsIndex extends Component {
 
     renderCategories() {
         var categories = _.map(this.props.posts, (post) => { return post.categories });
-        categories = _.uniq(categories, true);
+        categories = _.uniq(categories, false);
 
         if (typeof categories == 'undefined' || categories.length == 0) {
             return <div>Loading...</div>;
@@ -51,7 +51,7 @@ class PostsIndex extends Component {
 
         return categories.map((category) => {
             return (
-                <li className="list-group-item" key={category}>
+                <li className={"list-group-item " + (category == this.props.category ? 'active' : '')} key={category}>
                     <a href="#" onClick={ () => {this.onCategoriesClick(category)} }>
                         {category}
                     </a>
@@ -79,7 +79,7 @@ class PostsIndex extends Component {
                     <div className="col-md-4">
                         <h4>Categories</h4>
                         <ul className="list-group">
-                            <li className="list-group-item">
+                            <li className={"list-group-item " + (!this.props.category ? 'active' : '' )}>
                                 <a href="#" onClick={() => {this.onCategoriesClick(null)}}>ALL</a>
                             </li>
                             { this.renderCategories() }

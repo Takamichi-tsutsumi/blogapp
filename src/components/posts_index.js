@@ -41,11 +41,14 @@ class PostsIndex extends Component {
     }
 
     renderCategories() {
-        return this.props.posts.map((post) => {
+        var categories = _.map(this.props.posts, (post) => { return post.categories });
+        categories = _.uniq(categories, true);
+
+        return categories.map((category) => {
             return (
-                <li className="list-group-item" key={post.categories}>
-                    <a href="#" onClick={ () => {this.onCategoriesClick(post.categories)} }>
-                        {post.categories}
+                <li className="list-group-item" key={category}>
+                    <a href="#" onClick={ () => {this.onCategoriesClick(category)} }>
+                        {category}
                     </a>
                 </li>
             )

@@ -11,7 +11,7 @@ export default function(state = INITIAL_STATE, action) {
         case FETCH_A_POST:
             return { ...state, post: action.payload.data };
         case SELECT_CATEGORY:
-            return { ...state, category: action.payload.category };
+            return { ...state, category: action.payload };
         default:
             return state;
     }

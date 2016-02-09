@@ -14,14 +14,16 @@ class PostsIndex extends Component {
 
     renderPosts() {
         var posts = this.props.posts;
-        console.log(this.props.category);
-        if ('post') {
+
+
+        if (this.props.category) {
             posts = _.filter(posts, (post) => {
-                if (post.categories == 'post') {
+                if (post.categories == this.props.category) {
                     return post;
                 }
             })
         }
+
         return posts.map((post) => {
             return (
                 <li className="list-group-item" key={post.id}>
@@ -34,15 +36,22 @@ class PostsIndex extends Component {
         });
     }
 
+    onCategoriesClick(event) {
+        this.props.selectCategory(event);
+    }
+
     renderCategories() {
         return this.props.posts.map((post) => {
             return (
                 <li className="list-group-item" key={post.categories}>
+                    <a href="#" onClick={ () => {this.onCategoriesClick(post.categories)} }>
                         {post.categories}
+                    </a>
                 </li>
             )
         })
     }
+
 
     render() {
         return (

@@ -74,6 +74,9 @@ class PostsIndex extends Component {
                     <div className="col-md-4">
                         <h4>Categories</h4>
                         <ul className="list-group">
+                            <li className="list-group-item">
+                                <a href="#" onClick={() => {this.onCategoriesClick(null)}}>ALL</a>
+                            </li>
                             { this.renderCategories() }
                         </ul>
                     </div>

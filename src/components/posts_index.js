@@ -51,11 +51,12 @@ class PostsIndex extends Component {
 
         return categories.map((category) => {
             return (
-                <li className={"list-group-item " + (category == this.props.category ? 'active' : '')} key={category}>
-                    <a href="#" onClick={ () => {this.onCategoriesClick(category)} }>
+                    <a href="#"
+                       className={"list-group-item " + (category == this.props.category ? 'active' : '')}
+                       onClick={ () => {this.onCategoriesClick(category)} }
+                       key={category}>
                         {category}
                     </a>
-                </li>
             )
         })
     }
@@ -78,12 +79,13 @@ class PostsIndex extends Component {
                     </div>
                     <div className="col-md-4">
                         <h4>Categories</h4>
-                        <ul className="list-group">
-                            <li className={"list-group-item " + (!this.props.category ? 'active' : '' )}>
-                                <a href="#" onClick={() => {this.onCategoriesClick(null)}}>ALL</a>
-                            </li>
+                        <div className="list-group">
+                            <a onClick={() => {this.onCategoriesClick(null)}}
+                                className={"list-group-item " + (!this.props.category ? 'active' : '' )}>
+                                ALL
+                            </a>
                             { this.renderCategories() }
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
